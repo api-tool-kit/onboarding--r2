@@ -20,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/api-tool-kit/onboarding/issues"
   },
-  "homepage": "https://github.com/api-tool-kit/onboarding#readme"
+  "homepage": "https://github.com/api-tool-kit/onboarding#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^2.6.1",
+    "express": "^4.17.1"
+  }
 }
