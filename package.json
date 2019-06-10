@@ -1,0 +1,24 @@
+{
+  "name": "onboarding",
+  "version": "1.0.0",
+  "description": "completed onboarding API for BigCo, Inc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/api-tool-kit/onboarding.git"
+  },
+  "keywords": [
+    "onboarding",
+    "bigco",
+    "amundsen"
+  ],
+  "author": "Mike Amundsen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/api-tool-kit/onboarding/issues"
+  },
+  "homepage": "https://github.com/api-tool-kit/onboarding#readme"
+}
