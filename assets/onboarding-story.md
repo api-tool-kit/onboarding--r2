@@ -1,10 +1,10 @@
-## Onboarding STory at BigCo, Inc.
+## Onboarding Story at BigCo, Inc.
 
 When we add a new customer (we call them a `company` at BigCo, Inc) we have an _onboarding process_.
 
 The onboarding process is a series of steps where we collect important data, enter it into the system, and the system then generates key data records that we use throughout the life of our relationship with that `company`. The onboarding process is something that's been around a long time -- all done by hand -- and how we want to automate as much of the process as possible.
 
-Each _onboarding experience_ starts by creating an oboarding record. Currently this is a physical folder we use to keep important information and we pass this folder around to all parties involved in the onboarding process steps. for the new API, we expect this onboarding record to be something the new API will create and manage.
+Each _onboarding experience_ starts by creating an onboarding record. Currently this is a physical folder we use to keep important information and we pass this folder around to all parties involved in the onboarding process steps. For the new API, we expect this onboarding record to be something the new API will create and manage.
 
 The onboarding experience currently has the following key steps:
 
