@@ -27,9 +27,9 @@ exports.urlencoded = true;
 exports.allowCORS = "GET POST PUT DELETE PATCH OPTIONS HEAD";
 
 exports.pageLinks = [
-  {name:"home", href:"/"},
-  {name:"list", href:"/list"},
-  {name:"create", href:"/"}
+  {name:"home", href:"/", rel:"home"},
+  {name:"list", href:"/list", rel:"collection"},
+  {name:"create", href:"/", rel:"create"}
 ];
 
 exports.itemLinks = [
