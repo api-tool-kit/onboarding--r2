@@ -18,5 +18,5 @@ Steps 2, 3, & 4 need to collect the same information we currently collect using 
 
 Along with the collected information mentioned above, each Onboarding Record MUST also have a unique id, and a status field (active, pending, and closed). We also track the date/time the record was created and the date/time it was last updated.
 
-Typical actions for Onboarding records are, listOnboardingRecords, createOnboarding, addCompany, addAccount, addActivity, approveOnboarding (set status=active), and rejectOnboarding(set status=close). You cannot DELETE onboarding records. 
+Typical actions for Onboarding records are, listOnboardingRecords, createOnboardingRecord, addCompanyInfo, addAccountInfo, addActivityInfo, approveOnboardingRecord(set status=`active`), and rejectOnboardingRecord(set status=`closed`). You cannot DELETE onboarding records. 
  
