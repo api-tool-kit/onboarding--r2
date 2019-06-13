@@ -17,15 +17,8 @@ router.use(bodyParser.json({type:properties.responseTypes}));
 router.use(bodyParser.urlencoded({extended:properties.urlencoded}));
 
 //set up response body templates
-var templates = properties.templates;
-var pLinks = properties.pageLinks||[];
-var iLinks = properties.itemLinks||[];
-
-var pForms = properties.pageForms||[];
-var iForms = properties.itemForms||[];
-
 var representor = {};
-representor.templates = templates||[];
+representor.templates = properties.templates||[];
 representor.pageLinks = properties.pageLinks||[];
 representor.itemLinks = properties.itemLinks||[];
 representor.pageForms = properties.pageForms||[];
@@ -47,9 +40,22 @@ router.use(function emitCORS (req, res, next) {
   next()
 })
 
+// ********************************************
 // the actions/capabilities of this service API
+// ********************************************
+// landing/home page
 router.get('/',function(req,res){
-  utils.handler(req,res,actions.home, object, representor) 
+  utils.handler(req,res,actions.blank, 'home', representor) 
+});
+
+// list of onboarding records
+router.get('/list',function(req,res){
+  utils.handler(req,res,actions.blank, 'list', representor) 
+});
+
+// single onboarding record
+router.get('/:onboardingId',function(req,res){
+  utils.handler(req,res,actions.blank, 'item', representor) 
 });
 
 // publish the capability routes

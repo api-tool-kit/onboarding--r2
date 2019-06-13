@@ -10,7 +10,7 @@ var properties = require('./properties');
  * action handles for company service
  *****************************************/
 
- module.exports.home = function(req,res) {
+ module.exports.blank = function(req,res) {
   return new Promise(function(resolve,reject) {
     var body = [];
     if(body) {
