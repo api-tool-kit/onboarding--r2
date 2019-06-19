@@ -45,7 +45,7 @@ Onboarding API for BigCo, Inc
                 ]
             }
 
-## Onboarding Record [/{onboardingId}]
+## Onboarding Record [/1q2w3e4r5t]
 
 ### Show Onboarding Record [GET]
 
@@ -57,7 +57,22 @@ Onboarding API for BigCo, Inc
             ]
         }
 
-## Add Company Info [/{onboardingId}/company]
+### Update Onboarding Record [PATCH]
+
++ Request (application/x-www-form-urlencoded)
+
+        onboardingId=1q2w3e4r5t&other-properties=...
+ 
++ Response 200 (application/json)
+
+        {
+            "items" : [
+                {"onboardingId":"1qw2w3e4r5t",
+                  "other-properties" : "..."}
+            ]
+        }
+	    
+## Add Company Info [/1q2w3e4r5t/company]
 
 ### Show Company Info Form [GET]
 
