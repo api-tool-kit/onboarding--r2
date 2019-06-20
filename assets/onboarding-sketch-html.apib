@@ -3,7 +3,9 @@ HOST: http://onboarding.example.org/
 
 # Onboarding API (HTML Sketch)
 
-Onboarding API for BigCo, Inc
+Onboarding API for BigCo, Inc.
+
+This is an HTML API sketch w/ forms
 
 ## Home [/]
 
@@ -24,7 +26,7 @@ Onboarding API for BigCo, Inc
         <h1>LIST</h1>
 
         <p><a href="/create">CREATE-FORM</a></p>
-        <p><a href="/12w3e4r5t">ITEM:1q2w3e4r5t</a></p> 
+        <p><a href="/1q2w3e4r5t">ITEM:1q2w3e4r5t</a></p> 
 
 ### Create Onboarding Record [POST]
 
@@ -40,8 +42,7 @@ Onboarding API for BigCo, Inc
 
     + Body
     
-            <h1>created new onboarding record...</h1>
-            <p><a href="/1q2w3e4r5t">ITEM:1q2w3e4r5t</a></p>
+            <p><a href="/1q2w3e4r5t">created ITEM:1q2w3e4r5t</a></p>
             
 ## Onboarding Create Form [/create]
 
@@ -61,15 +62,44 @@ Onboarding API for BigCo, Inc
 
 + Response 200 (text/html)
 
-        ITEM:1q2w3e4r5t
+        <h1>ITEM:1q2w3e4r5t</h1>
 
+        <p><a href="/list">LIST</a></p>
+        
+        <p>data fields display here...</p>
+
+        <p><a href="/1q2w3e4r5t/company">Show Company Info Form</a></p>
+        <p><a href="/1q2w3e4r5t/account">Show Account Info Form</a></p>
+        <p><a href="/1q2w3e4r5t/activity">Show Activity Info Form</a></p>
+        <p><a href="/1q2w3e4r5t/approve">Show Approve Form</a></p>
+        <p><a href="/1q2w3e4r5t/reject">Show Reject Form</a></p>
+
+#### Update Onboarding Record [POST]
+
++ Request (application/x-www-form-urlencoded)
+
+        onboardingId=1q2w3e4r5t&other-properties="..."
+
++ Response 302 (text/html)        
+
+    + Headers
+    
+            Location: /1q2w3e4r5t
+        
 ## Add Company Info [/1q2w3e4r5t/company]
 
 ### Show Company Info Form [GET]
 
 + Response 200 (text/html)
 
-        COMPANY-INFO-FORM
+        <h1>COMPANY-INFO-FORM</h1>
+
+        <form name="create" action="/1q2w3e4r5t" method="post">
+           onboardingId:<input name="onboardingId" value="1q2w3e4r5t" />
+           status:<input name="status" value="pending" />
+           other properties:<input name="other-properties" value="..." />
+           <input type="submit" />
+        </form>
 
 ## Add Account Info [/1q2w3e4r5t/account]
 
@@ -77,7 +107,14 @@ Onboarding API for BigCo, Inc
 
 + Response 200 (text/html)
 
-        ACCOUNT-INFO-FORM
+        <h1>ACCOUNT-INFO-FORM</h1>
+
+        <form name="create" action="/1q2w3e4r5t" method="post">
+           onboardingId:<input name="onboardingId" value="1q2w3e4r5t" />
+           status:<input name="status" value="pending" />
+           other properties:<input name="other-properties" value="..." />
+           <input type="submit" />
+        </form>
 
 ## Add Activity Info [/1q2w3e4r5t/activity]
 
@@ -85,7 +122,14 @@ Onboarding API for BigCo, Inc
 
 + Response 200 (text/html)
 
-        ACTIVITY-INFO-FORM
+        <h1>ACTIVITY-INFO-FORM</h1>
+
+        <form name="create" action="/1q2w3e4r5t" method="post">
+           onboardingId:<input name="onboardingId" value="1q2w3e4r5t" />
+           status:<input name="status" value="pending" />
+           other properties:<input name="other-properties" value="..." />
+           <input type="submit" />
+        </form>
 
 ## Approve Onboarding [/1q2w3e4r5t/approve]
 
@@ -93,7 +137,26 @@ Onboarding API for BigCo, Inc
 
 + Response 200 (text/html)
 
-        APPROVE-ONBOARDING-FORM
+        <h1>APPROVE-ONBOARDING-FORM</h1>
+
+        <form name="create" action="/1q2w3e4r5t/approve" method="post">
+           onboardingId:<input name="onboardingId" value="1q2w3e4r5t" />
+           status:<input name="status" value="active" />
+           <input type="submit" />
+        </form>
+
+### Approve Onboarding Record [POST]
+
++ Request
+
+            onboardingid=1q2w3e4r5t&status=active
+            
++ Response 200 (text/html)
+
+    + Body
+    
+            <h1>approved ITEM:1q2w3e4r5t</h1>
+            <p><a href="/list">LIST</a></p>
         
 ## Reject Onboarding [/1q2w3e4r5t/reject]
 
@@ -101,5 +164,24 @@ Onboarding API for BigCo, Inc
 
 + Response 200 (text/html)
 
-        REJECT-ONBOARDING-FORM
+        <h1>REJECT-ONBOARDING-FORM</h1>
+
+        <form name="create" action="/1q2w3e4r5t/reject" method="post">
+           onboardingId:<input name="onboardingId" value="1q2w3e4r5t" />
+           status:<input name="status" value="closed" />
+           <input type="submit" />
+        </form>
+
+### Reject Onboarding Record [POST]
+
++ Request
+
+            onboardingid=1q2w3e4r5t&status=closed
+            
++ Response 200 (text/html)
+
+    + Body
+    
+            <h1>rejected ITEM:1q2w3e4r5t</h1>
+            <p><a href="/list">LIST</a></p>
 
