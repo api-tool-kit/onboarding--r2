@@ -26,16 +26,23 @@ Onboarding API for BigCo, Inc
         <p><a href="/create">CREATE-FORM</a></p>
         <p><a href="/12w3e4r5t">ITEM:1q2w3e4r5t</a></p> 
 
-### Add Onboarding Record [POST]
+### Create Onboarding Record [POST]
 
 + Request (application/x-www-form-urlencoded)
 
-            companyName=sample
+            onboardingId=1q2w3e4r5t
 
-+ Response 200 (text/html)
++ Response 201 (text/html)
 
-            <h1>created new onboarding record...</1>
+    + Header 
+        
+            Location: /1q2w3e4r5t
 
+    + Body
+    
+            <h1>created new onboarding record...</h1>
+            <p><a href="/1q2w3e4r5t">ITEM:1q2w3e4r5t</a></p>
+            
 ## Onboarding Create Form [/create]
 
 ### Show Onboarding Create Form [GET]
@@ -44,7 +51,7 @@ Onboarding API for BigCo, Inc
         <h1>CREATE-FORM</h1>
 
         <form name="create" action="/list" method="post">
-           CompanyName:<input name="companyName">companyName</input>
+           onboardingId:<input name="onboardingId" value="1q2w3e4r5t" />
            <input type="submit" />
         </form>
 
@@ -60,11 +67,11 @@ Onboarding API for BigCo, Inc
 
 ### Show Company Info Form [GET]
 
-+ Response 200 (application/json)
++ Response 200 (text/html)
 
         COMPANY-INFO-FORM
 
-## Add Account Info [/{onboardingId}/account]
+## Add Account Info [/1q2w3e4r5t/account]
 
 ### Show Account Info Form [GET]
 
@@ -72,7 +79,7 @@ Onboarding API for BigCo, Inc
 
         ACCOUNT-INFO-FORM
 
-## Add Activity Info [/{onboardingId}/activity]
+## Add Activity Info [/1q2w3e4r5t/activity]
 
 ### Show Activity Info Form [GET]
 
@@ -80,7 +87,7 @@ Onboarding API for BigCo, Inc
 
         ACTIVITY-INFO-FORM
 
-## Approve Onboarding [/{onboardingId}/approve]
+## Approve Onboarding [/1q2w3e4r5t/approve]
 
 ### Show Approve Form [GET]
 
@@ -88,7 +95,7 @@ Onboarding API for BigCo, Inc
 
         APPROVE-ONBOARDING-FORM
         
-## Reject Onboarding [/{onboardingId}/reject]
+## Reject Onboarding [/1q2w3e4r5t/reject]
 
 ### Show Reject Form [GET]
 
