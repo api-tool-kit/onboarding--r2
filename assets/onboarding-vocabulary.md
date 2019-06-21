@@ -1,4 +1,4 @@
-# Company Vocabulary
+# Onboarding Vocabulary
 
 ## Data Elements
  * id
@@ -17,7 +17,7 @@
  * activityType (email, inperson, phone, letter)
  * dateScheduled
  * notes
- * status (active, pending,closed)
+ * status (active, pending, closed)
  * dateCreated
  * dateUpdated
 
@@ -35,7 +35,7 @@
  * addActivityInfo
    * activityType(email)[R], dateScheduled, notes
  * approveOnboarding
-   * status(approved)[R]
+   * status(active)[R]
  * recjectOnboarding
    * status(closed)[R]
 
