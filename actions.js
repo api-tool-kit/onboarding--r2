@@ -1,18 +1,35 @@
 /*****************************************
- * onboarding capabilities for BigCo, Inc.
- * 2019-01 mamund
+// bigco, inc 
+// action elements
+// onboarding
+// 2020-02-01 : mamund
  *****************************************/
 
-var component = require('./dorr-component');
-var properties = require('./properties');
+var component = require('./darrt/component');
+var data = require('./data');
 
-/*****************************************
- * action handles for company service
+/***************************************** 
+// actions for the onboarding service
+// home, create, list, filter, 
+// read, addCompany, addAccount, addActivity
+// approve, reject
  *****************************************/
 
- module.exports.blank = function(req,res) {
+module.exports.home = function(req,res) {
   return new Promise(function(resolve,reject) {
-    var body = [];
+    var body = []; 
+    
+    // hack to handle empty root for non-link types
+    ctype = req.get("Accept")||"";
+    if("application/json text-csv".indexOf(ctype)!==-1) {
+      body = {
+        id:"list",
+        name:"onboarding",
+        rel:"collection onboarding",
+        href: "{fullhost}/list/"
+      };
+    }
+    
     if(body) {
       resolve(body);
     }
@@ -22,7 +39,6 @@ var properties = require('./properties');
   });
 }
 
-/**************************
 module.exports.create = function(req,res) {
   return new Promise(function(resolve,reject) {
     if(req.body) {
@@ -30,12 +46,12 @@ module.exports.create = function(req,res) {
      resolve(
       component(
         { 
-          name:'activity',
+          name:'onboarding',
           action:'add',
           item:body,
-          props:properties.props,
-          reqd:properties.reqd, 
-          enums:properties.enums
+          props:data.props,
+          reqd:data.reqd, 
+          enums:data.enums
         }
        )
      );
@@ -48,14 +64,14 @@ module.exports.create = function(req,res) {
 
 module.exports.list = function(req,res) {
   return new Promise(function(resolve,reject) {
-    resolve(component({name:'activity',action:'list'}));
+    resolve(component({name:'company',action:'list'}));
   });
 }
 
 module.exports.filter = function(req,res) {
   return new Promise(function(resolve,reject){
     if(req.query && req.query.length!==0) {
-      resolve(component({name:'activity',action:'filter',filter:req.query}));
+      resolve(component({name:'onboarding',action:'filter',filter:req.query}));
     }
     else {
       reject({error:"invalid query string"});
@@ -65,9 +81,9 @@ module.exports.filter = function(req,res) {
 
 module.exports.read = function(req,res) {
   return new Promise(function(resolve,reject){
-    if(req.params.activityId && req.params.activityId!==null) {
-      var id = req.params.activityId;
-      resolve(component({name:'activity',action:'item',id:id}));
+    if(req.params.companyId && req.params.companyId!==null) {
+      var id = req.params.onboardingId;
+      resolve(component({name:'onboarding',action:'item',id:id}));
     } 
     else {
       reject({error:"missing id"});
@@ -75,20 +91,20 @@ module.exports.read = function(req,res) {
   });
 }
 
-module.exports.update = function(req,res) {
+module.exports.addCompany = function(req,res) {
   var id,body;
   return new Promise(function(resolve,reject){
-    id = req.params.activityId||null;
+    id = req.params.onboardingId||null;
     body = req.body||null;
     if(id!==null && body!==null) {
        resolve(component(
-         {name:'activity',
+         {name:'onboarding',
           action:'update',
           id:id,
           item:body,
-          props:properties.props,
-          reqd:properties.reqd,
-          enums:properties.enums}));
+          props:data.props,
+          reqd:data.reqd,
+          enums:data.enums}));
      }
      else {
        reject({error:"missing id and/or body"});
@@ -96,20 +112,20 @@ module.exports.update = function(req,res) {
   });
 }
 
-module.exports.status = function(req,res) {
+module.exports.addAccount = function(req,res) {
   var id,body;
   return new Promise(function(resolve,reject){
-    id = req.params.activityId||null;
+    id = req.params.onboardingId||null;
     body = req.body||null;
     if(id!==null && body!==null) {
        resolve(component(
-         {name:'activity',
+         {name:'onboarding',
           action:'update',
           id:id,
           item:body,
-          props:properties.props,
-          reqd:properties.reqd,
-          enums:properties.enums}));
+          props:data.props,
+          reqd:data.reqd,
+          enums:data.enums}));
      }
      else {
        reject({error:"missing id and/or body"});
@@ -117,25 +133,80 @@ module.exports.status = function(req,res) {
   });
 }
 
-module.exports.close = function(req,res) {
+module.exports.addActivity = function(req,res) {
   var id,body;
   return new Promise(function(resolve,reject){
-    id = req.params.activityId||null;
+    id = req.params.onboardingId||null;
     body = req.body||null;
     if(id!==null && body!==null) {
        resolve(component(
-         {name:'activity',
+         {name:'onboarding',
           action:'update',
           id:id,
           item:body,
-          props:properties.props,
-          reqd:properties.reqd,
-          enums:properties.enums}));
+          props:data.props,
+          reqd:data.reqd,
+          enums:data.enums}));
      }
      else {
        reject({error:"missing id and/or body"});
      }
   });
 }
-*****************************************/
 
+module.exports.approve = function(req,res) {
+  var id,body;
+  return new Promise(function(resolve,reject){
+    id = req.params.onboardingId||null;
+    body = req.body||null;
+    if(id!==null && body!==null) {
+       resolve(component(
+         {name:'onboarding',
+          action:'update',
+          id:id,
+          item:body,
+          props:data.props,
+          reqd:data.data,
+          enums:data.enums}));
+     }
+     else {
+       reject({error:"missing id and/or body"});
+     }
+  });
+}
+
+module.exports.reject = function(req,res) {
+  var id,body;
+  return new Promise(function(resolve,reject){
+    id = req.params.onboardingId||null;
+    body = req.body||null;
+    if(id!==null && body!==null) {
+       resolve(component(
+         {name:'onboarding',
+          action:'update',
+          id:id,
+          item:body,
+          props:data.props,
+          reqd:data.data,
+          enums:data.enums}));
+     }
+     else {
+       reject({error:"missing id and/or body"});
+     }
+  });
+}
+
+/*
+module.exports.remove = function(req,res) {
+  return new Promise(function(resolve,reject){
+    if(req.params.onboardingId && req.params.onboardingId!==null) {
+      var id = req.params.onboardingId;
+      resolve(component(
+        {name:'company',action:'delete', id:id}));
+    }
+    else {
+      reject({error:"invalid id"});
+    }
+  });
+}
+*/
