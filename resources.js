@@ -43,6 +43,8 @@ var metadata = [
 // ***********************************************************
 // public resources for the onboarding service
 // ***********************************************************
+
+// home 
 router.get('/',function(req,res){
   utils.handler(req,res,actions.home,"home", 
     {
@@ -54,9 +56,9 @@ router.get('/',function(req,res){
   )
 });
 
-router.post('/', function(req,res){
-  console.log("create");
-  utils.handler(req,res,actions.create,"onboarding", 
+// start the onboarding
+router.post('/wip/', function(req,res){
+  utils.handler(req,res,actions.createWIP,"onboarding", 
     {
       metadata:metadata,
       templates:templates,
@@ -66,9 +68,9 @@ router.post('/', function(req,res){
   )
 });
 
-router.get('/list/',function(req,res){
-  console.log("list");
-  utils.handler(req,res,actions.list,"onboarding", 
+// get a list of onboarding records
+router.get('/wip/',function(req,res){
+  utils.handler(req,res,actions.listWIP,"onboarding", 
     {
       metadata:metadata,
       templates:templates,
@@ -78,8 +80,9 @@ router.get('/list/',function(req,res){
   )
 });
 
-router.get('/filter/', function(req,res){
-  utils.handler(req,res,actions.filter,"onboarding", 
+// filter the list of onboarding records
+router.get('/wip/filter/', function(req,res){
+  utils.handler(req,res,actions.filterWIP,"onboarding", 
     {
       metadata:metadata,
       templates:templates,
@@ -89,8 +92,9 @@ router.get('/filter/', function(req,res){
   )
 });
 
-router.get('/:id', function(req,res){
-  utils.handler(req,res,actions.read,"onboarding", 
+// get a single onboarding record
+router.get('/wip/:id', function(req,res){
+  utils.handler(req,res,actions.readWIP,"onboarding", 
     {
       metadata:metadata,
       templates:templates,
@@ -100,8 +104,9 @@ router.get('/:id', function(req,res){
   )
 });
 
-router.put('/company/:id', function(req,res){
-  utils.handler(req,res,actions.addCompany,"onboarding", 
+// get the company values for a single record
+router.get('/wip/:id/company', function(req,res){
+  utils.handler(req,res,actions.readCompany,"onboarding", 
     {
       metadata:metadata,
       templates:templates,
@@ -111,8 +116,9 @@ router.put('/company/:id', function(req,res){
   )
 });
 
-router.put('/account/:id', function(req,res){
-  utils.handler(req,res,actions.addAccount,"onboarding", 
+// update the company values for a single record
+router.put('/wip/:id/company', function(req,res){
+  utils.handler(req,res,actions.writeCompany,"onboarding", 
     {
       metadata:metadata,
       templates:templates,
@@ -122,8 +128,9 @@ router.put('/account/:id', function(req,res){
   )
 });
 
-router.put('/activity/:id', function(req,res){
-  utils.handler(req,res,actions.addActivity,"onboarding", 
+// get the account values for a single record
+router.get('/wip/:id/account', function(req,res){
+  utils.handler(req,res,actions.readAccount,"onboarding", 
     {
       metadata:metadata,
       templates:templates,
@@ -133,8 +140,9 @@ router.put('/activity/:id', function(req,res){
   )
 });
 
-router.patch('/approve/:id', function(req,res){
-  utils.handler(req,res,actions.approve,"onboarding", 
+// update the account values for a single record
+router.put('/wip/:id/account', function(req,res){
+  utils.handler(req,res,actions.writeAccount,"onboarding", 
     {
       metadata:metadata,
       templates:templates,
@@ -144,8 +152,45 @@ router.patch('/approve/:id', function(req,res){
   )
 });
 
-router.patch('/reject/:id', function(req,res){
-  utils.handler(req,res,actions.reject,"onboarding", 
+// get the activity values for a single record
+router.get('/wip/:id/activity', function(req,res){
+  utils.handler(req,res,actions.readActivity,"onboarding", 
+    {
+      metadata:metadata,
+      templates:templates,
+      forms:forms, 
+      filter:"item"
+    }
+  )
+});
+
+// update the activity values for a single record
+router.put('/wip/:id/activity', function(req,res){
+  utils.handler(req,res,actions.writeActivity,"onboarding", 
+    {
+      metadata:metadata,
+      templates:templates,
+      forms:forms, 
+      filter:"item"
+    }
+  )
+});
+
+// get the status of a single record
+router.get('/wip/:id/status', function(req,res){
+  utils.handler(req,res,actions.readStatus,"onboarding", 
+    {
+      metadata:metadata,
+      templates:templates,
+      forms:forms, 
+      filter:"item"
+    }
+  )
+});
+
+// write the status of a single record
+router.put('/wip/:id/status', function(req,res){
+  utils.handler(req,res,actions.writeStatus,"onboarding", 
     {
       metadata:metadata,
       templates:templates,
@@ -156,19 +201,7 @@ router.patch('/reject/:id', function(req,res){
 });
 
 /*
-router.patch('/status/:id', function(req,res){
-  utils.handler(req,res,actions.status,"onboarding", 
-    {
-      metadata:metadata,
-      templates:templates,
-      forms:forms, 
-      filter:"item"
-    }
-  )
-});
-*/
-
-/*
+// remove a single record
 router.delete('/:onboardingId', function(req,res){
   utils.handler(req,res,actions.remove,"onboarding", 
     {

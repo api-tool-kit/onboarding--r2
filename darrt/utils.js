@@ -221,7 +221,7 @@ function exception(name, message, code, type, url) {
 
   rtn.type = (type||"error");
   rtn.title = (name||"Error");
-  rtn.detail = (message||rtn.name);
+  rtn.detail = (message||name);
   rtn.status = (code||400);
   if(url) {rtn.instance = url};
 

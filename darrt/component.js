@@ -32,6 +32,7 @@ function main(args) {
   item = args.item||{};
   reqd = args.reqd||[];
   enums = args.enums||[];
+  fields = args.fields||"";
  
   // confirm existence of object storage
   storage({action:'create',object:elm});
@@ -52,7 +53,7 @@ function main(args) {
       break;
     case 'read':
     case 'item':
-      rtn = utils.cleanList(storage({object:elm, action:'item', id:id}));
+      rtn = utils.cleanList(storage({object:elm, action:'item', id:id, fields:fields}));
       break;
     case 'filter':
       rtn = utils.cleanList(storage({object:elm, action:'filter', filter:filter}));
@@ -115,7 +116,7 @@ function addEntry(elm, entry, props, reqd, enums) {
   }
   
   if(error.length!==0) {
-    rtn = utils.exception(error);
+    rtn = utils.exception("error",error);
   }
   else {
     rtn = storage(

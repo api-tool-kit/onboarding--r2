@@ -30,7 +30,7 @@
      {
        id:"list",
        name:"list",
-       href:"{fullhost}/list/",
+       href:"{fullhost}/wip/",
        rel:"collection onboarding",
        tags:"collection onboarding home list item",
        title:"List",
@@ -40,7 +40,7 @@
      {
        id:"filter",
        name:"filter",
-       href:"{fullhost}/filter/",
+       href:"{fullhost}/wip/filter/",
        rel:"collection onboarding filter",
        tags:"collection onboarding filter list item",
        title:"Search",
@@ -53,9 +53,9 @@
        ]
      },
      {
-       id: "createOnboarding",
-       name: "createOnboarding",
-       href: "{fullhost}/",
+       id: "createWIP",
+       name: "createWIP",
+       href: "{fullhost}/wip/",
        rel: "create-form onboarding",
        tags: "collection onboarding list",
        title: "Create Onboarding",
@@ -68,9 +68,9 @@
    ],
    itemForms: [
      {
-       id:"read_{id}",
-       name: "read",
-       href: "{fullhost}/{id}",
+       id:"readWIP_{id}",
+       name: "readWIP",
+       href: "{fullhost}/wip/{id}",
        rel: "item onboarding read",
        title: "Read",
        method: "GET",
@@ -79,7 +79,7 @@
      {
        id:"addCompany_{id}",
        name:"addCompany",
-       href:"{fullhost}/{id}",
+       href:"{fullhost}/wip/{id}/company",
        rel: "item edit-form onboarding",
        tags: "onboarding list item",
        title: "Add Company",
@@ -100,7 +100,7 @@
      {
        id:"addAccount_{id}",
        name:"addAccount",
-       href:"{fullhost}/{id}",
+       href:"{fullhost}/wip/{id}/account",
        rel: "item edit-form onboarding",
        tags: "onboarding list item",
        title: "Add Account",
@@ -115,7 +115,7 @@
      {
        id:"addActivity_{id}",
        name:"addActivity",
-       href:"{fullhost}/{id}",
+       href:"{fullhost}/wip/{id}/activity",
        rel: "item edit-form onboarding",
        tags: "onboarding list item",
        title: "Add Activity",
@@ -130,11 +130,11 @@
      {
        id:"approve_{id}",
        name:"approve",
-       href:"{fullhost}/approve/{id}",
+       href:"{fullhost}/wip/{id}/status",
        rel: "item onboarding approve",
        tags: "onboarding item list approve",
        title: "Approve",
-       method: "PATCH",
+       method: "PUT",
        properties: [
          {name:"status",value:"active"}
        ]
@@ -142,11 +142,11 @@
      {
        id:"reject_{id}",
        name:"reject",
-       href:"{fullhost}/reject/{id}",
+       href:"{fullhost}/wip/{id}/status",
        rel: "item onboarding reject",
        tags: "onboarding item list reject",
        title: "Reject",
-       method: "PATCH",
+       method: "PUT",
        properties: [
          {name:"status",value:"closed"}
        ]

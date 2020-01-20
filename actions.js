@@ -10,9 +10,6 @@ var data = require('./data');
 
 /***************************************** 
 // actions for the onboarding service
-// home, create, list, filter, 
-// read, addCompany, addAccount, addActivity
-// approve, reject
  *****************************************/
 
 module.exports.home = function(req,res) {
@@ -39,10 +36,11 @@ module.exports.home = function(req,res) {
   });
 }
 
-module.exports.create = function(req,res) {
+module.exports.createWIP = function(req,res) {
   return new Promise(function(resolve,reject) {
-    if(req.body) {
-     var body = req.body;
+    var body = req.body||{};
+    console.log(body);
+    if(body) {
      resolve(
       component(
         { 
@@ -62,13 +60,13 @@ module.exports.create = function(req,res) {
   });
 };
 
-module.exports.list = function(req,res) {
+module.exports.listWIP = function(req,res) {
   return new Promise(function(resolve,reject) {
     resolve(component({name:'onboarding',action:'list'}));
   });
 }
 
-module.exports.filter = function(req,res) {
+module.exports.filterWIP = function(req,res) {
   return new Promise(function(resolve,reject){
     if(req.query && req.query.length!==0) {
       resolve(component({name:'onboarding',action:'filter',filter:req.query}));
@@ -79,7 +77,7 @@ module.exports.filter = function(req,res) {
   })
 }
 
-module.exports.read = function(req,res) {
+module.exports.readWIP = function(req,res) {
   return new Promise(function(resolve,reject){
     if(req.params.id && req.params.id!==null) {
       var id = req.params.id;
@@ -91,7 +89,21 @@ module.exports.read = function(req,res) {
   });
 }
 
-module.exports.addCompany = function(req,res) {
+module.exports.readCompany = function(req,res) {
+  return new Promise(function(resolve,reject){
+    if(req.params.id && req.params.id!==null) {
+      var id = req.params.id;
+      var fields=`id, status, dateCreated, dateUpdated, companyId, companyName, 
+        streetAddress, city, stateProvince, country, telephone, email`
+      resolve(component({name:'onboarding',action:'item',id:id, fields:fields}));
+    } 
+    else {
+      reject({error:"missing id"});
+    }
+  });
+}
+
+module.exports.writeCompany = function(req,res) {
   var id,body;
   return new Promise(function(resolve,reject){
     id = req.params.id||null;
@@ -112,7 +124,21 @@ module.exports.addCompany = function(req,res) {
   });
 }
 
-module.exports.addAccount = function(req,res) {
+module.exports.readAccount = function(req,res) {
+  return new Promise(function(resolve,reject){
+    if(req.params.id && req.params.id!==null) {
+      var id = req.params.id;
+      var fields=`id, status, dateCreated, dateUpdated, 
+        accountId, division, spendingLimit, discountPercentage`
+      resolve(component({name:'onboarding',action:'item',id:id, fields:fields}));
+    } 
+    else {
+      reject({error:"missing id"});
+    }
+  });
+}
+
+module.exports.writeAccount = function(req,res) {
   var id,body;
   return new Promise(function(resolve,reject){
     id = req.params.id||null;
@@ -133,7 +159,21 @@ module.exports.addAccount = function(req,res) {
   });
 }
 
-module.exports.addActivity = function(req,res) {
+module.exports.readActivity = function(req,res) {
+  return new Promise(function(resolve,reject){
+    if(req.params.id && req.params.id!==null) {
+      var id = req.params.id;
+      var fields=`id, status, dateCreated, dateUpdated, 
+        activityId, activityType, dateScheduled, notes`
+      resolve(component({name:'onboarding',action:'item',id:id, fields:fields}));
+    } 
+    else {
+      reject({error:"missing id"});
+    }
+  });
+}
+
+module.exports.writeActivity = function(req,res) {
   var id,body;
   return new Promise(function(resolve,reject){
     id = req.params.id||null;
@@ -154,28 +194,20 @@ module.exports.addActivity = function(req,res) {
   });
 }
 
-module.exports.approve = function(req,res) {
-  var id,body;
+module.exports.readStatus = function(req,res) {
   return new Promise(function(resolve,reject){
-    id = req.params.id||null;
-    body = req.body||null;
-    if(id!==null && body!==null) {
-       resolve(component(
-         {name:'onboarding',
-          action:'update',
-          id:id,
-          item:body,
-          props:data.props,
-          reqd:data.data,
-          enums:data.enums}));
-     }
-     else {
-       reject({error:"missing id and/or body"});
-     }
+    if(req.params.id && req.params.id!==null) {
+      var id = req.params.id;
+      var fields="id, status, dateCreated, dateUpdated" 
+      resolve(component({name:'onboarding',action:'item',id:id, fields:fields}));
+    } 
+    else {
+      reject({error:"missing id"});
+    }
   });
 }
 
-module.exports.reject = function(req,res) {
+module.exports.writeStatus = function(req,res) {
   var id,body;
   return new Promise(function(resolve,reject){
     id = req.params.id||null;

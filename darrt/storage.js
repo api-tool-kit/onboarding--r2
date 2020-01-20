@@ -32,19 +32,20 @@ function main(args) {
   var filter = args.filter||null;
   var id = args.id||null;
   var item = args.item||{};
+  var fields = args.fields||"";
 
   switch (action) {
     case 'create':
       rtn = createObject(object);
       break;
     case 'list':
-      rtn = getList(object);
+      rtn = getList(object, fields);
       break;
     case 'filter':
-      rtn = getList(object, filter);
+      rtn = getList(object, filter, fields);
       break;
     case 'item':
-      rtn = getItem(object, id);
+      rtn = getItem(object, id, fields);
       break;
     case 'add':
       rtn = addItem(object, item, id);
@@ -99,6 +100,11 @@ function getList(object, filter) {
     coll = [];
   }
 
+  // apply field filter
+  for(i=0,x=coll.length;i<x;i++) {
+    coll[i] = applyFields(coll[i],fields);
+  }
+  
   return coll;
 }
 
@@ -112,7 +118,28 @@ function getItem(object, id) {
     rtn = exception("SimpleStorage: ["+object+"]", ex.message, 400);
   }
 
+  rtn = applyFields(rtn, fields);
+  
   return rtn;
+}
+
+// apply field list
+function applyFields(item,fields) {
+  var rtn = {};
+  
+  if(fields.length!==0) {
+    for(var i in item) {
+      if(fields.indexOf(i)!==-1) {
+        rtn[i] = item[i];
+      }
+    }
+  }
+  else {
+    rtn = item;
+  }
+  
+  return rtn;
+  
 }
 
 // create a storage object (folder)
@@ -145,6 +172,8 @@ function addItem(object, item, id) {
   item.dateCreated = new Date();
   item.dateUpdated = item.dateCreated;
 
+  console.log(item);
+  
   if (fs.existsSync(folder + object + '/' + item.id)) {
     rtn = exception("SimpleStorage: ["+object+"]", "Record already exists");
   } else {
