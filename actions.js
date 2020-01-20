@@ -39,7 +39,6 @@ module.exports.home = function(req,res) {
 module.exports.createWIP = function(req,res) {
   return new Promise(function(resolve,reject) {
     var body = req.body||{};
-    console.log(body);
     if(body) {
      resolve(
       component(

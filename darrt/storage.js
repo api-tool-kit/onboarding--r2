@@ -124,6 +124,8 @@ function getItem(object, id) {
 }
 
 // apply field list
+// item = object to return
+// fields = a string of field names to return
 function applyFields(item,fields) {
   var rtn = {};
   
@@ -172,8 +174,6 @@ function addItem(object, item, id) {
   item.dateCreated = new Date();
   item.dateUpdated = item.dateCreated;
 
-  console.log(item);
-  
   if (fs.existsSync(folder + object + '/' + item.id)) {
     rtn = exception("SimpleStorage: ["+object+"]", "Record already exists");
   } else {
