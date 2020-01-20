@@ -64,7 +64,7 @@ module.exports.create = function(req,res) {
 
 module.exports.list = function(req,res) {
   return new Promise(function(resolve,reject) {
-    resolve(component({name:'company',action:'list'}));
+    resolve(component({name:'onboarding',action:'list'}));
   });
 }
 
@@ -81,8 +81,8 @@ module.exports.filter = function(req,res) {
 
 module.exports.read = function(req,res) {
   return new Promise(function(resolve,reject){
-    if(req.params.companyId && req.params.companyId!==null) {
-      var id = req.params.onboardingId;
+    if(req.params.id && req.params.id!==null) {
+      var id = req.params.id;
       resolve(component({name:'onboarding',action:'item',id:id}));
     } 
     else {
@@ -94,7 +94,7 @@ module.exports.read = function(req,res) {
 module.exports.addCompany = function(req,res) {
   var id,body;
   return new Promise(function(resolve,reject){
-    id = req.params.onboardingId||null;
+    id = req.params.id||null;
     body = req.body||null;
     if(id!==null && body!==null) {
        resolve(component(
@@ -115,7 +115,7 @@ module.exports.addCompany = function(req,res) {
 module.exports.addAccount = function(req,res) {
   var id,body;
   return new Promise(function(resolve,reject){
-    id = req.params.onboardingId||null;
+    id = req.params.id||null;
     body = req.body||null;
     if(id!==null && body!==null) {
        resolve(component(
@@ -136,7 +136,7 @@ module.exports.addAccount = function(req,res) {
 module.exports.addActivity = function(req,res) {
   var id,body;
   return new Promise(function(resolve,reject){
-    id = req.params.onboardingId||null;
+    id = req.params.id||null;
     body = req.body||null;
     if(id!==null && body!==null) {
        resolve(component(
@@ -157,7 +157,7 @@ module.exports.addActivity = function(req,res) {
 module.exports.approve = function(req,res) {
   var id,body;
   return new Promise(function(resolve,reject){
-    id = req.params.onboardingId||null;
+    id = req.params.id||null;
     body = req.body||null;
     if(id!==null && body!==null) {
        resolve(component(
@@ -178,7 +178,7 @@ module.exports.approve = function(req,res) {
 module.exports.reject = function(req,res) {
   var id,body;
   return new Promise(function(resolve,reject){
-    id = req.params.onboardingId||null;
+    id = req.params.id||null;
     body = req.body||null;
     if(id!==null && body!==null) {
        resolve(component(
@@ -199,8 +199,8 @@ module.exports.reject = function(req,res) {
 /*
 module.exports.remove = function(req,res) {
   return new Promise(function(resolve,reject){
-    if(req.params.onboardingId && req.params.onboardingId!==null) {
-      var id = req.params.onboardingId;
+    if(req.params.id && req.params.id!==null) {
+      var id = req.params.id;
       resolve(component(
         {name:'company',action:'delete', id:id}));
     }

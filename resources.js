@@ -41,7 +41,7 @@ var metadata = [
 
 
 // ***********************************************************
-// public resources for the cokmpany service
+// public resources for the onboarding service
 // ***********************************************************
 router.get('/',function(req,res){
   utils.handler(req,res,actions.home,"home", 
@@ -55,6 +55,7 @@ router.get('/',function(req,res){
 });
 
 router.post('/', function(req,res){
+  console.log("create");
   utils.handler(req,res,actions.create,"onboarding", 
     {
       metadata:metadata,
@@ -66,6 +67,7 @@ router.post('/', function(req,res){
 });
 
 router.get('/list/',function(req,res){
+  console.log("list");
   utils.handler(req,res,actions.list,"onboarding", 
     {
       metadata:metadata,
@@ -87,7 +89,7 @@ router.get('/filter/', function(req,res){
   )
 });
 
-router.get('/:onboardingId', function(req,res){
+router.get('/:id', function(req,res){
   utils.handler(req,res,actions.read,"onboarding", 
     {
       metadata:metadata,
@@ -98,7 +100,7 @@ router.get('/:onboardingId', function(req,res){
   )
 });
 
-router.put('/company/:onboardingId', function(req,res){
+router.put('/company/:id', function(req,res){
   utils.handler(req,res,actions.addCompany,"onboarding", 
     {
       metadata:metadata,
@@ -109,7 +111,7 @@ router.put('/company/:onboardingId', function(req,res){
   )
 });
 
-router.put('/account/:onboardingId', function(req,res){
+router.put('/account/:id', function(req,res){
   utils.handler(req,res,actions.addAccount,"onboarding", 
     {
       metadata:metadata,
@@ -120,7 +122,7 @@ router.put('/account/:onboardingId', function(req,res){
   )
 });
 
-router.put('/activity/:onboardingId', function(req,res){
+router.put('/activity/:id', function(req,res){
   utils.handler(req,res,actions.addActivity,"onboarding", 
     {
       metadata:metadata,
@@ -131,7 +133,7 @@ router.put('/activity/:onboardingId', function(req,res){
   )
 });
 
-router.patch('/approve/:onboardingId', function(req,res){
+router.patch('/approve/:id', function(req,res){
   utils.handler(req,res,actions.approve,"onboarding", 
     {
       metadata:metadata,
@@ -142,7 +144,7 @@ router.patch('/approve/:onboardingId', function(req,res){
   )
 });
 
-router.patch('/reject/:onboardingId', function(req,res){
+router.patch('/reject/:id', function(req,res){
   utils.handler(req,res,actions.reject,"onboarding", 
     {
       metadata:metadata,
@@ -154,7 +156,7 @@ router.patch('/reject/:onboardingId', function(req,res){
 });
 
 /*
-router.patch('/status/:onboardingId', function(req,res){
+router.patch('/status/:id', function(req,res){
   utils.handler(req,res,actions.status,"onboarding", 
     {
       metadata:metadata,

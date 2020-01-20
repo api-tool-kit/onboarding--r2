@@ -11,8 +11,8 @@
        id:"self",
        name:"self",
        href:"{fullurl}",
-       rel: "self colllection company",
-       tags: "collection company self home list item",
+       rel: "self colllection onboarding",
+       tags: "collection onboarding self home list item",
        title: "Self",
        method: "GET",
        properties:[]
@@ -21,8 +21,8 @@
        id:"home",
        name:"home",
        href:"{fullhost}/",
-       rel: "collection company",
-       tags: "collection company home list item",
+       rel: "collection onboarding",
+       tags: "collection onboarding home list item",
        title: "Home",
        method: "GET",
        properties:[]
@@ -31,8 +31,8 @@
        id:"list",
        name:"list",
        href:"{fullhost}/list/",
-       rel:"collection company",
-       tags:"collection company home list item",
+       rel:"collection onboarding",
+       tags:"collection onboarding home list item",
        title:"List",
        method:"GET",
        properties:[]
@@ -41,14 +41,14 @@
        id:"filter",
        name:"filter",
        href:"{fullhost}/filter/",
-       rel:"collection company filter",
-       tags:"collection company filter list item",
+       rel:"collection onboarding filter",
+       tags:"collection onboarding filter list item",
        title:"Search",
        method:"GET",
        properties:[
          {name:"status",value:""},
-         {name:"companyName",value:""}
-         {name:"stateProvince",value:""}
+         {name:"companyName",value:""},
+         {name:"stateProvince",value:""},
          {name:"country",value:""}
        ]
      },
