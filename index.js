@@ -8,7 +8,7 @@ var express = require('express');
 var app = express();
 var cors = require('cors');
 
-var resources = require('./resources');
+var resources = require('./darrt/resources');
 var port = process.env.PORT || 8080;
 
 // support calls from JS in browser
