@@ -208,8 +208,8 @@ exports.exception = function(name, message, code, type, url) {
 
   rtn.type = (type||"error");
   rtn.title = (name||"Error");
-  rtn.detail = (message||rtn.name);
-  rtn.status = (code||400);
+  rtn.detail = (message||name);
+  rtn.status = (code||"400");
   if(url) {rtn.instance = url};
 
   return rtn;
@@ -222,7 +222,7 @@ function exception(name, message, code, type, url) {
   rtn.type = (type||"error");
   rtn.title = (name||"Error");
   rtn.detail = (message||name);
-  rtn.status = (code||400);
+  rtn.status = (code||"400");
   if(url) {rtn.instance = url};
 
   return rtn;

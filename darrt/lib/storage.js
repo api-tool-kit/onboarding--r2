@@ -11,7 +11,7 @@
  - FILE is the record (stored as JSON object, w/ ID as filename)
  - CRUD style interface (list, item, add, update, remove)
  - "contains"-type filtering is supported, no sort or join
- - NOTE: all actions are *synchronous* 
+ - field filtering (you can provide a field list (string)
 */
 
 var fs = require('fs');
@@ -21,7 +21,7 @@ module.exports = main;
 
 /*
  * args is a hash table of possible arguments
- * {object:"",action:"",filter:"",id:"",item:objItem}
+ * {object:"",action:"",filter:"",id:"",item:objItem,...}
  */
 function main(args) {
   var rtn;
@@ -39,7 +39,7 @@ function main(args) {
       rtn = createObject(object);
       break;
     case 'list':
-      rtn = getList(object, fields);
+      rtn = getList(object, null, fields);
       break;
     case 'filter':
       rtn = getList(object, filter, fields);
@@ -66,7 +66,7 @@ function main(args) {
 }
 
 // get a list of items (possibly via filter)
-function getList(object, filter) {
+function getList(object, filter, fields) {
   var coll, item, list, i, x, t, name;
 
   coll = [];
@@ -109,7 +109,7 @@ function getList(object, filter) {
 }
 
 // retrieve and existing item
-function getItem(object, id) {
+function getItem(object, id, fields) {
   var rtn;
 
   try {
