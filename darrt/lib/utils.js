@@ -215,7 +215,7 @@ exports.exception = function(name, message, code, type, url) {
   return rtn;
 }
 
-// local exeption routine
+// local exception routine
 function exception(name, message, code, type, url) {
   var rtn = {};
 

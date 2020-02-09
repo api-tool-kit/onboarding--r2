@@ -150,7 +150,8 @@ module.exports.writeAccount = function(req,res) {
           item:body,
           props:data.props,
           reqd:data.reqd,
-          enums:data.enums}));
+          enums:data.enums,
+          fields:fields}));
      }
      else {
        reject({error:"missing id and/or body"});
