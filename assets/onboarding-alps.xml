@@ -8,7 +8,7 @@
   <descriptor id="listOnboardings" type="safe" rt="#onboarding" text="return list of onboarding records"/>
 
   <descriptor id="createOnboarding" type="unsafe" rt="#onboarding" text="start a new onboarding record">
-    <descriptor href="onboardingStart" />
+    <descriptor href="#onboardingStart" />
   </descriptor>
   
   <descriptor id="readOnboarding" type="safe" rt="#onboarding" text="read an existing onboarding record">
