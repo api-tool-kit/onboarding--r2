@@ -4,6 +4,9 @@
 // 2020-02-01 : mamund
  *****************************************/
 
+// support form encoding
+exports.urlencoded = true;
+
 // load representors
 var appJson = require('./representors/app-json');
 var formsJson = require('./representors/forms-json');
@@ -11,18 +14,15 @@ var linksJson = require('./representors/links-json');
 var pragJson = require('./representors/prag-json');
 var textCsv = require('./representors/text-csv');
 
-// support form encoding
-exports.urlencoded = true;
-
 // return supported response bodies
 exports.getTemplates = function() {
   var list = [];
   
   list.push(appJson.template);
   list.push(formsJson.template);
-  list.push(textCsv.template);
   list.push(linksJson.template);
   list.push(pragJson.template);
+  list.push(textCsv.template);
 
   return list;  
 }
