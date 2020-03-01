@@ -1,4 +1,4 @@
-/*******************************************************
+/*`******************************************************
  * component middleware module (DARRT)
  * Mike Amundsen (@mamund)
  *******************************************************/
@@ -34,7 +34,7 @@ function main(args) {
   enums = args.enums||[];
   defs = args.defs||[];
   fields = args.fields||"";
- 
+  
   // confirm existence of object storage
   storage({action:'create',object:elm});
 
@@ -117,7 +117,7 @@ function addEntry(elm, entry, props, reqd, enums) {
   }
   
   if(error.length!==0) {
-    rtn = utils.exception("error",error);
+    rtn = utils.exception(error);
   }
   else {
     rtn = storage(

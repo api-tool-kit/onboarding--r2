@@ -11,7 +11,7 @@
  - FILE is the record (stored as JSON object, w/ ID as filename)
  - CRUD style interface (list, item, add, update, remove)
  - "contains"-type filtering is supported, no sort or join
- - field filtering (you can provide a field list (string)
+ - NOTE: all actions are *synchronous* 
 */
 
 var fs = require('fs');
@@ -21,7 +21,7 @@ module.exports = main;
 
 /*
  * args is a hash table of possible arguments
- * {object:"",action:"",filter:"",id:"",item:objItem,...}
+ * {object:"",action:"",filter:"",id:"",item:objItem}
  */
 function main(args) {
   var rtn;
@@ -104,7 +104,7 @@ function getList(object, filter, fields) {
   for(i=0,x=coll.length;i<x;i++) {
     coll[i] = applyFields(coll[i],fields);
   }
-  
+
   return coll;
 }
 
@@ -119,7 +119,7 @@ function getItem(object, id, fields) {
   }
 
   rtn = applyFields(rtn, fields);
-  
+
   return rtn;
 }
 
@@ -192,12 +192,11 @@ function updateItem(object, item, id) {
   var current, rtn;
 
   current = getItem(object, id);
-  
   if (!current) {
     rtn = exception("SimpleStorage: ["+object+"]", "Invalid [id]", 400);
     return rtn;
   }
-  
+   
   current = item;
   current.dateUpdated = new Date();
   
@@ -242,8 +241,8 @@ function exception(name, message, code, type, url) {
 
   rtn.type = (type||"error");
   rtn.title = (name||"Error");
-  rtn.detail = (message||rtn.name);
-  rtn.status = (code||400);
+  rtn.detail = (message||name);
+  rtn.status = (code||"400");
   if(url) {rtn.instance = url};
 
   return rtn;
