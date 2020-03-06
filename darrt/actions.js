@@ -23,7 +23,7 @@ module.exports.home = function(req,res) {
         id:"list",
         name:"onboarding",
         rel:"collection onboarding",
-        href: "{fullhost}/list/"
+        href: "{fullhost}/wip/"
       };
     }
     
@@ -228,17 +228,15 @@ module.exports.writeStatus = function(req,res) {
   });
 }
 
-/*
 module.exports.remove = function(req,res) {
   return new Promise(function(resolve,reject){
     if(req.params.id && req.params.id!==null) {
       var id = req.params.id;
       resolve(component(
-        {name:'company',action:'delete', id:id}));
+        {name:'onboarding',action:'delete', id:id}));
     }
     else {
       reject({error:"invalid id"});
     }
   });
 }
-*/

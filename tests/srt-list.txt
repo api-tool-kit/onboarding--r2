@@ -1,7 +1,39 @@
-http://localhost:8484/
-http://localhost:8484/list/
-http://localhost:8484/filter?status=active
-http://localhost:8484/ -X POST -d id=q1w2e3r4&status=pending&companyName=MikeCo&email=mikeco@example.com
-http://localhost:8484/q1w2e3r4 -X PUT -d streetAddress=123%20Main&city=Byteville&stateProvince=MD&postalCode=12345&country=USA&telephone=2345678901
-http://localhost:8484/status/q1w2e3r4 -X PATCH -d status=active
-http://localhost:8484/q1w2e3r4 -X DELETE
+# onboarding requests
+
+http://localhost:8080/
+http://localhost:8080/wip/
+http://localhost:8080/wip/filter?status=active
+
+# create a wip record
+http://localhost:8080/wip/ -X POST -d id=q1w2e3r4&status=pending
+http://localhost:8080/wip/q1w2e3r4
+
+# add company data
+http://localhost:8080/wip/q1w2e3r4/company
+http://localhost:8080/wip/q1w2e3r4/company -X PUT -d companyId=w2e3r4t5&companyName=MikeCo%20Inc.&streetAddress=123%20Main&city=Byteville&stateProvince=MD&postalCode=12345&country=USA&telephone=123-456-7890&email=mikeco@example.org
+http://localhost:8080/wip/q1w2e3r4/company
+
+# add account data
+http://localhost:8080/wip/q1w2e3r4/account
+http://localhost:8080/wip/q1w2e3r4/account -X PUT -d  accountId=3e4r5t6y&division=Military&spendingLimit=12000&discountPercentage=8
+http://localhost:8080/wip/q1w2e3r4/account
+
+# add activity data
+http://localhost:8080/wip/q1w2e3r4/activity
+http://localhost:8080/wip/q1w2e3r4/activity -X PUT -d  activityId=4r5t6y7u&activityType=inperson&dateScheduled=2020-05-01&notes=follow%20up%20visit.
+http://localhost:8080/wip/q1w2e3r4/activity
+
+# check status
+http://localhost:8080/wip/q1w2e3r4/status
+
+# approve it
+http://localhost:8080/wip/q1w2e3r4/status -X PATCH -d status=active
+
+# close it out
+http://localhost:8080/wip/q1w2e3r4/status -X PATCH -d status=closed
+
+# remove it (might not work)
+http://localhost:8080/wip/q1w2e3r4 -X DELETE
+
+# EOF
+
